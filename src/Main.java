@@ -19,10 +19,12 @@ public class Main {
         int count = 1;
         for (int i = 0; i < text.length(); i++) {
             char c = text.toLowerCase().charAt(i);
-            if (Character.isLetter(c) && !lettersAmount.containsKey(c)) {
-                lettersAmount.put(c, count);
-            } else if (Character.isLetter(c)) {
-                lettersAmount.put(c, count++);
+            if (Character.isLetter(c)) {
+                if (!lettersAmount.containsKey(c)) {
+                    lettersAmount.put(c, count);
+                } else {
+                    lettersAmount.put(c, lettersAmount.get(c) + 1);
+                }
             }
         }
     }
