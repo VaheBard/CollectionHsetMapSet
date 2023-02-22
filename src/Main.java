@@ -7,34 +7,12 @@ public class Main {
 
         textToCharAddMap(lettersAmount);//Экстрактировал, логику сливание символов в мапу, в этот метод
 
-        int maxValue = 0;
-        int minValue;
-        char maxLetter = 0;
-        char minLetter = 0;
-
-        for (char key : lettersAmount.keySet()) {
-            int value = lettersAmount.get(key);
-            if (value > maxValue) {
-                maxValue = value;
-                maxLetter = key;
-            }
-        }
-        minValue = maxValue;
-        for (char key : lettersAmount.keySet()) {
-            int value = lettersAmount.get(key);
-            if (value < minValue) {
-                minValue = value;
-                minLetter = key;
-            }
-        }
-
         for (Map.Entry<Character, Integer> kv : lettersAmount.entrySet()) {//вывожу заполненную мапу на экран для наглядности в формате
             System.out.println(kv.getKey() + " = " + kv.getValue() + "\n");// ключ = значение, где ключ это буква из текста а значение то количество
                                                                     // сколько раз она повторялась в тексте
         }
-        System.out.println("Максимальное количество раз встречается буква : " + maxLetter + " = " + maxValue +"\n");
-        System.out.println("Минимальное количество раз встречается буква : " + minLetter + " = " + minValue + '\n');
 
+        letterMinMax(lettersAmount);//этот метод считает минимальное и максимальное количество символов в тексте, и результат выводит на экран
     }
 
     private static void textToCharAddMap(Map<Character, Integer> lettersAmount) {
@@ -47,6 +25,32 @@ public class Main {
                 lettersAmount.put(c, count++);
             }
         }
+    }
+
+    private static void letterMinMax(Map<Character, Integer> letters) {
+        int maxValue = 0;
+        char maxLetter = 0;
+        int minValue;
+        char minLetter = 0;
+
+        for (char key : letters.keySet()) {
+            int value = letters.get(key);
+            if (value > maxValue) {
+                maxValue = value;
+                maxLetter = key;
+            }
+        }
+
+        minValue = maxValue;
+        for (char key : letters.keySet()) {
+            int value = letters.get(key);
+            if (value < minValue) {
+                minValue = value;
+                minLetter = key;
+            }
+        }
+        System.out.println("Максимальное количество раз встречается буква : " + maxLetter + " = " + maxValue +"\n");
+        System.out.println("Минимальное количество раз встречается буква : " + minLetter + " = " + minValue + '\n');
     }
 
     static String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
